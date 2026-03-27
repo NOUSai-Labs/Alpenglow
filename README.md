@@ -1,143 +1,97 @@
-<p align="center">
-  <img src="https://img.shields.io/badge/status-BETA-blue?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/platform-macOS-lightgrey?style=for-the-badge&logo=apple" />
-  <img src="https://img.shields.io/badge/license-proprietary-orange?style=for-the-badge" />
-</p>
+This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
-<h1 align="center">Alpenglow</h1>
+# Getting Started
 
-<p align="center">
-  <strong>Local-first AI agent platform with memory that actually works.</strong>
-</p>
+> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
 
-<p align="center">
-  Your agents remember you. Not "here's a summary of our last chat" remember.<br/>
-  <em>Actually</em> remember.
-</p>
+## Step 1: Start Metro
 
----
+First, you will need to run **Metro**, the JavaScript build tool for React Native.
 
-## What is Alpenglow?
+To start the Metro dev server, run the following command from the root of your React Native project:
 
-Alpenglow is an AI agent management platform where your agents get smarter every day you use them. Unlike every other AI tool that forgets you the moment the conversation ends, Alpenglow agents build persistent, structured memory that compounds over time.
+```sh
+# Using npm
+npm start
 
-- **100% retrieval accuracy** on memory benchmarks
-- **Sub-millisecond recall** on structured queries
-- **Zero cloud dependency** — your data never leaves your machine
-- **Encrypted at rest** — AES-256-GCM, device-bound encryption
-- **Works with any LLM** — bring your own API keys (OpenAI, Anthropic, Google, xAI, Ollama)
+# OR using Yarn
+yarn start
+```
 
-## Beta Access
+## Step 2: Build and run your app
 
-**Alpenglow Beta is LIVE.**
+With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
 
-The first **100 users** who sign up will receive:
+### Android
 
-- **Lifetime Plus tier access** ($5/month value, free forever)
-- **Up to 10 agents** with expanded memory capacity
-- **Full access to all built-in tools** — web suite, email, voice, PDF, diagrams, documents, and more
-- **Early access to the integration store** when it opens
+```sh
+# Using npm
+npm run android
 
-Beta testers help shape the platform. We expect bugs. We'll work through them together. Your feedback directly influences what we build next.
+# OR using Yarn
+yarn android
+```
 
-## What's Included
+### iOS
 
-### Built-in Tools (Free)
-- **Praxis Webcrawler** — search, fetch, crawl, extract, render, cache (paywall bypass via archive.is)
-- **Email** — full IMAP/SMTP with Gmail and Outlook OAuth support
-- **Voice** — text-to-speech (Kokoro) and speech-to-text (Whisper), fully local, zero cost
-- **Documents** — create Word, PowerPoint, and Excel files from natural language
-- **PDF Generation** — investor-grade quality via Pandoc + Typst
-- **Diagrams** — D2 diagramming engine
-- **YouTube** — transcript extraction and summarization
-- **Code Execution** — Python, Node.js, shell, git
-- **Web Search** — Brave (primary) + DuckDuckGo (fallback)
+For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
 
-### Agent Features
-- **Persistent Memory** — agents remember across sessions, days, weeks
-- **Crickets** — scheduled tasks that chirp on time
-- **Spiders** — intelligent cleanup that removes stale tasks automatically
-- **Transpiration** — agent health monitoring every 4 hours
-- **Seedlings** — spawn ephemeral sub-agents for parallel task execution
-- **Chat Threads** — organize conversations by topic
-- **Advanced Search** — filter by date, agent, keywords, threads
-- **Conference Mode** — multiple agents collaborating on one task
+The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
 
-### Messaging Relay
-Connect your agents to messaging apps. Each agent appears as a separate contact:
-- Telegram
-- WhatsApp
-- Signal
-- Discord
-- Slack
-- Generic Webhook
+```sh
+bundle install
+```
 
-### Integration Store (Opens April 3rd, 2026)
-Browse, purchase, and install agent capabilities:
-- Apple Notes, Reminders, Calendar, Contacts, Photos automation
-- Excel automation (live AppleScript control)
-- Social Media Dashboard
-- Google Analytics Dashboard
-- Prediction Markets
-- Trading Floor
-- Content Manager
-- Praxis Full Suite (autonomous computer control)
-- More coming weekly
+Then, and every time you update your native dependencies, run:
 
-## System Requirements
+```sh
+bundle exec pod install
+```
 
-- **macOS** 13.0 (Ventura) or later
-- **Apple Silicon** (M1/M2/M3/M4) or Intel Mac
-- **Windows** — coming soon (before April 3rd)
-- **4GB RAM** minimum (8GB recommended)
-- **500MB disk space** (plus space for agent memory)
-- **LLM API key** — OpenAI, Anthropic, Google, xAI, or local Ollama
+For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
 
-## Getting Started
+```sh
+# Using npm
+npm run ios
 
-1. Download `Alpenglow-0.1.0-beta-arm64.dmg` (Apple Silicon) or `Alpenglow-0.1.0-beta.dmg` (Intel) from [Releases](https://github.com/NOUSai-Labs/Alpenglow/releases)
-2. Drag to Applications
-3. Launch Alpenglow
-4. Create your account
-5. Add your LLM API key
-6. Sprout your first agent
-7. Start talking
+# OR using Yarn
+yarn ios
+```
 
-## Privacy
+If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
 
-Your data is yours. Period.
+This is one way to run your app — you can also build it directly from Android Studio or Xcode.
 
-- All memory and conversation data stays on your machine
-- Encrypted at rest with AES-256-GCM
-- The cloud server handles account authentication and store purchases only
-- We collect anonymized system health metrics (error rates, memory quality scores) to improve the platform
-- We **never** collect conversation content, file contents, or what you build
-- Opt-in only for extended diagnostics
+## Step 3: Modify your app
 
-## For Developers
+Now that you have successfully run the app, let's make changes!
 
-Interested in building integrations for the Alpenglow store?
+Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
 
-Developers who generate >$10/month in store revenue get **free unlimited access** to the platform. You set your own prices (up to $20 per item). Commission starts at 25% and drops to 15% for top-performing developers.
+When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
 
-Developer documentation coming soon. Join the beta to get early access to the SDK.
+- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
+- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
 
-## Feedback
+## Congratulations! :tada:
 
-Use the built-in **Comment Box** on the dashboard to send feedback directly to our ops team. We read everything. Beta testers are shaping the future of this platform.
+You've successfully run and modified your React Native App. :partying_face:
 
-## About
+### Now what?
 
-Alpenglow is built by [NOUS AI Labs](https://github.com/NOUSai-Labs).
+- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
+- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
 
-The memory architecture powering Alpenglow is proprietary and protected. The platform is local-first by design — not because it's trendy, but because your AI agents should work for you, not for a cloud provider.
+# Troubleshooting
 
----
+If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
 
-<p align="center">
-  <em>"Everyone's racing to make models bigger. We built the layer that makes small models perform like big ones."</em>
-</p>
+# Learn More
 
-<p align="center">
-  <strong>alpenglow.dev</strong>
-</p>
+To learn more about React Native, take a look at the following resources:
+
+- [React Native Website](https://reactnative.dev) - learn more about React Native.
+- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
+- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
+- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
+- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
