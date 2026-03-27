@@ -29,7 +29,7 @@ Alpenglow is an AI agent management platform where your agents get smarter every
 
 ## Beta Access
 
-**Alpenglow Beta launches April 3rd, 2026.**
+**Alpenglow Beta is LIVE.**
 
 The first **100 users** who sign up will receive:
 
@@ -72,7 +72,7 @@ Connect your agents to messaging apps. Each agent appears as a separate contact:
 - Slack
 - Generic Webhook
 
-### Integration Store (Opens April 3rd)
+### Integration Store (Opens April 3rd, 2026)
 Browse, purchase, and install agent capabilities:
 - Apple Notes, Reminders, Calendar, Contacts, Photos automation
 - Excel automation (live AppleScript control)
