@@ -88,6 +88,7 @@ Browse, purchase, and install agent capabilities:
 
 - **macOS** 13.0 (Ventura) or later
 - **Apple Silicon** (M1/M2/M3/M4) or Intel Mac
+- **Windows** — coming soon (before April 3rd)
 - **4GB RAM** minimum (8GB recommended)
 - **500MB disk space** (plus space for agent memory)
 - **LLM API key** — OpenAI, Anthropic, Google, xAI, or local Ollama
