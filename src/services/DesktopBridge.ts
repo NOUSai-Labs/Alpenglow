@@ -10,6 +10,7 @@
  * with its local psyche copy + local memory. No games.
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { executeMobileTool } from '../tools';
 
 const STORAGE_KEY = 'alpenglow_desktop_bridge';
 const PSYCHE_KEY = 'alpenglow_agent_psyches';
@@ -248,7 +249,7 @@ class DesktopBridgeService {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ deviceId: 'phone' }),
-        signal: AbortSignal.timeout(3000),
+        signal: AbortSignal.timeout?.(3000) || undefined,
       });
       if (!res.ok) return;
 
@@ -260,8 +261,6 @@ class DesktopBridgeService {
 
         let result: string;
         try {
-          // Dynamic import to avoid circular dependency
-          const { executeMobileTool } = require('../tools');
           result = await executeMobileTool(req.tool, req.args || {});
         } catch (err: any) {
           result = `Error: ${err.message}`;
@@ -273,7 +272,7 @@ class DesktopBridgeService {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ id: req.id, result }),
-            signal: AbortSignal.timeout(5000),
+            signal: AbortSignal.timeout?.(5000) || undefined,
           });
         } catch (err: any) {
           console.warn(`[bridge] Failed to send tool result: ${err.message}`);
