@@ -30,5 +30,17 @@ target 'AlpenglowMobile' do
       :mac_catalyst_enabled => false,
       # :ccache_enabled => true
     )
+
+    # Link NOUS memory engine static library
+    installer.pods_project.targets.each do |target|
+      if target.name == 'AlpenglowMobile'
+        target.build_configurations.each do |config|
+          config.build_settings['LIBRARY_SEARCH_PATHS'] ||= ['$(inherited)']
+          config.build_settings['LIBRARY_SEARCH_PATHS'] << '"$(SRCROOT)/lib"'
+          config.build_settings['OTHER_LDFLAGS'] ||= ['$(inherited)']
+          config.build_settings['OTHER_LDFLAGS'] << '-lnous_memory_mobile'
+        end
+      end
+    end
   end
 end

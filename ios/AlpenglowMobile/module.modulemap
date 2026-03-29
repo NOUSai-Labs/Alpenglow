@@ -1,0 +1,5 @@
+module NousMemoryC {
+  header "nous_memory.h"
+  link "nous_memory_mobile"
+  export *
+}
