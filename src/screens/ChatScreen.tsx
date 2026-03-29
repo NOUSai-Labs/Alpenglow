@@ -5,6 +5,7 @@ import {
 } from 'react-native';
 import { useTheme } from '../hooks/useTheme';
 import { useAgents } from '../hooks/useAgents';
+import { showFloatingChat } from '../components/FloatingChat';
 
 interface Message {
   id: string;
@@ -86,9 +87,14 @@ export default function ChatScreen() {
           {activeAgent ? `${activeAgent.emoji || '⚡'} ${activeAgent.name}` : 'Alpenglow'}
         </Text>
         {activeAgent && (
-          <Text style={[styles.headerSubtitle, { color: colors.textSecondary }]}>
-            {activeAgent.role} • Online{desktopConnected ? ' • 💻 Desktop' : ''}
-          </Text>
+          <View style={styles.headerRow}>
+            <Text style={[styles.headerSubtitle, { color: colors.textSecondary }]}>
+              {activeAgent.role} • Online{desktopConnected ? ' • 💻 Desktop' : ''}
+            </Text>
+            <TouchableOpacity onPress={showFloatingChat} style={styles.floatBtn}>
+              <Text style={[styles.floatBtnText, { color: colors.accent }]}>💬 Float</Text>
+            </TouchableOpacity>
+          </View>
         )}
       </View>
 
@@ -158,7 +164,10 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0.5,
   },
   headerTitle: { fontSize: 18, fontWeight: '700' },
-  headerSubtitle: { fontSize: 12, marginTop: 2 },
+  headerRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 2 },
+  headerSubtitle: { fontSize: 12 },
+  floatBtn: { paddingHorizontal: 8, paddingVertical: 2 },
+  floatBtnText: { fontSize: 12, fontWeight: '600' },
   messageList: { padding: 16, paddingBottom: 8 },
   bubble: {
     maxWidth: '80%',

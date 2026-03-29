@@ -9,6 +9,7 @@ import CricketsScreen from './src/screens/CricketsScreen';
 import SettingsScreen from './src/screens/SettingsScreen';
 import SetupScreen from './src/screens/SetupScreen';
 import BrowserScreen from './src/screens/BrowserScreen';
+import FloatingChat from './src/components/FloatingChat';
 import { AgentProvider, useAgents } from './src/hooks/useAgents';
 import { ThemeProvider, useTheme } from './src/hooks/useTheme';
 import { bootstrap, shutdown, BootStatus } from './src/services/AppBootstrap';
@@ -59,52 +60,57 @@ function AppContent() {
   }
 
   return (
-    <Tab.Navigator
-      screenOptions={{
-        headerShown: false,
-        tabBarStyle: {
-          backgroundColor: colors.surface,
-          borderTopColor: colors.border,
-          borderTopWidth: 0.5,
-          paddingBottom: 20,
-          paddingTop: 8,
-          height: 80,
-        },
-        tabBarActiveTintColor: colors.accent,
-        tabBarInactiveTintColor: colors.textSecondary,
-        tabBarLabelStyle: { fontSize: 10, fontWeight: '600' },
-      }}>
-      <Tab.Screen
-        name="Chat"
-        component={ChatScreen}
-        options={{ tabBarLabel: 'Chat', tabBarIcon: () => null }}
-      />
-      <Tab.Screen
-        name="Agents"
-        component={AgentsScreen}
-        options={{ tabBarLabel: 'Agents', tabBarIcon: () => null }}
-      />
-      <Tab.Screen
-        name="Dashboard"
-        component={DashboardScreen}
-        options={{ tabBarLabel: 'Dashboard', tabBarIcon: () => null }}
-      />
-      <Tab.Screen
-        name="Crickets"
-        component={CricketsScreen}
-        options={{ tabBarLabel: 'Crickets', tabBarIcon: () => null }}
-      />
-      <Tab.Screen
-        name="Browser"
-        component={BrowserScreen}
-        options={{ tabBarLabel: 'Browser', tabBarIcon: () => null }}
-      />
-      <Tab.Screen
-        name="Settings"
-        component={SettingsScreen}
-        options={{ tabBarLabel: 'Settings', tabBarIcon: () => null }}
-      />
-    </Tab.Navigator>
+    <View style={{ flex: 1 }}>
+      <Tab.Navigator
+        screenOptions={{
+          headerShown: false,
+          tabBarStyle: {
+            backgroundColor: colors.surface,
+            borderTopColor: colors.border,
+            borderTopWidth: 0.5,
+            paddingBottom: 20,
+            paddingTop: 8,
+            height: 80,
+          },
+          tabBarActiveTintColor: colors.accent,
+          tabBarInactiveTintColor: colors.textSecondary,
+          tabBarLabelStyle: { fontSize: 10, fontWeight: '600' },
+        }}>
+        <Tab.Screen
+          name="Chat"
+          component={ChatScreen}
+          options={{ tabBarLabel: 'Chat', tabBarIcon: () => null }}
+        />
+        <Tab.Screen
+          name="Agents"
+          component={AgentsScreen}
+          options={{ tabBarLabel: 'Agents', tabBarIcon: () => null }}
+        />
+        <Tab.Screen
+          name="Dashboard"
+          component={DashboardScreen}
+          options={{ tabBarLabel: 'Dashboard', tabBarIcon: () => null }}
+        />
+        <Tab.Screen
+          name="Crickets"
+          component={CricketsScreen}
+          options={{ tabBarLabel: 'Crickets', tabBarIcon: () => null }}
+        />
+        <Tab.Screen
+          name="Browser"
+          component={BrowserScreen}
+          options={{ tabBarLabel: 'Browser', tabBarIcon: () => null }}
+        />
+        <Tab.Screen
+          name="Settings"
+          component={SettingsScreen}
+          options={{ tabBarLabel: 'Settings', tabBarIcon: () => null }}
+        />
+      </Tab.Navigator>
+
+      {/* Floating chat overlay — persistent across all tabs */}
+      <FloatingChat />
+    </View>
   );
 }
 

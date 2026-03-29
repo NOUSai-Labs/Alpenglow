@@ -51,6 +51,7 @@ class DesktopBridgeService {
     psyches: {},
   };
   private syncTimer: ReturnType<typeof setInterval> | null = null;
+  private toolPollTimer: ReturnType<typeof setInterval> | null = null;
 
   async init() {
     // Load persisted bridge state (desktop URL, cached psyches)
@@ -203,12 +204,23 @@ class DesktopBridgeService {
     }
   }
 
-  /** Start periodic sync */
+  /** Start periodic sync + tool polling */
   startSync() {
     if (this.syncTimer) return;
     this.syncTimer = setInterval(async () => {
       await this.probe();
+      // Poll for tool requests from desktop
+      if (this.state.connected) {
+        await this.pollToolRequests();
+      }
     }, SYNC_INTERVAL);
+
+    // Poll for tools more frequently (every 2s) when connected
+    this.toolPollTimer = setInterval(async () => {
+      if (this.state.connected) {
+        await this.pollToolRequests();
+      }
+    }, 2000);
   }
 
   /** Stop periodic sync */
@@ -217,6 +229,57 @@ class DesktopBridgeService {
       clearInterval(this.syncTimer);
       this.syncTimer = null;
     }
+    if (this.toolPollTimer) {
+      clearInterval(this.toolPollTimer);
+      this.toolPollTimer = null;
+    }
+  }
+
+  /**
+   * Poll desktop for pending tool requests and execute them locally.
+   * This is how desktop Silas controls the phone — he queues a tool request,
+   * the phone picks it up, executes it, and returns the result.
+   */
+  private async pollToolRequests(): Promise<void> {
+    if (!this.state.desktopUrl) return;
+
+    try {
+      const res = await fetch(`${this.state.desktopUrl}/api/mobile/tools/poll`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ deviceId: 'phone' }),
+        signal: AbortSignal.timeout(3000),
+      });
+      if (!res.ok) return;
+
+      const data = await res.json();
+      const requests = data.requests || [];
+
+      for (const req of requests) {
+        console.log(`[bridge] Executing mobile tool: ${req.tool}(${JSON.stringify(req.args).slice(0, 60)})`);
+
+        let result: string;
+        try {
+          // Dynamic import to avoid circular dependency
+          const { executeMobileTool } = require('../tools');
+          result = await executeMobileTool(req.tool, req.args || {});
+        } catch (err: any) {
+          result = `Error: ${err.message}`;
+        }
+
+        // Send result back to desktop
+        try {
+          await fetch(`${this.state.desktopUrl}/api/mobile/tools/result`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: req.id, result }),
+            signal: AbortSignal.timeout(5000),
+          });
+        } catch (err: any) {
+          console.warn(`[bridge] Failed to send tool result: ${err.message}`);
+        }
+      }
+    } catch { /* silent — desktop might be busy */ }
   }
 }
 
