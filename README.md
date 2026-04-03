@@ -1,52 +1,55 @@
-# Alpenglow Mobile
+# Alpenglow
 
-The mobile companion for the Alpenglow AI agent platform. Native iOS app with local-first architecture — your data stays on your device.
+A local-first AI agent platform. Your data stays on your devices. Your agent remembers everything. No cloud required.
+
+## What It Is
+
+Alpenglow is an AI agent runtime that runs entirely on your hardware. Persistent memory, cross-device sync, encrypted storage, and autonomous agent capabilities — all local, all private.
 
 ## Features
 
-- **Native iOS app** — compiled native performance via React Native, not a web wrapper
-- **Cross-device sync** — your AI agent follows you between phone and desktop with encrypted delta synchronization
-- **Local inference routing** — mobile devices route computation to your local hardware over encrypted channels
-- **Offline-first** — full functionality without internet. Sync happens when connectivity returns
-- **Persistent memory** — your agent remembers across sessions with the same memory architecture as desktop
-- **12 phone tools** — injected at boot for mobile-specific agent capabilities
+- **Persistent memory** — your agent remembers across sessions. Not a chatbot that forgets. A companion that knows you.
+- **Local-first** — everything runs on your machine. No API calls. No cloud storage. No data leaving your devices.
+- **Cross-device sync** — encrypted delta synchronization between desktop and mobile. Your agent follows you.
+- **Defense-in-depth security** — three independent protection layers on all stored data
+- **Developer marketplace** — third-party tools and integrations
+- **Automation** — scheduled tasks, multi-step workflows, proactive agent execution
+- **Web UI** — runs in your browser at localhost, not in a terminal
 
-## Requirements
-
-- iOS 15.0+
-- Node.js 18+
-- CocoaPods
-- Xcode 15+
-
-## Setup
+## Getting Started
 
 ```sh
+# Clone the repository
+git clone https://github.com/NOUSai-Labs/Alpenglow.git
+
 # Install dependencies
 npm install
 
-# Install iOS pods
-cd ios && pod install && cd ..
-
-# Start Metro bundler
-npm start
-
-# Run on iOS (separate terminal)
-npm run ios
+# Launch Alpenglow
+npm run dev -- start
 ```
 
-## Architecture
-
-The mobile app connects to the Alpenglow backend running on your desktop/server via encrypted channels. The cognitive engine runs as a compiled native binary delivered via FFI bridge — not a cloud API call.
+The dashboard opens at `http://localhost:19820`
 
 ## Platform Support
 
-- **iOS** — Supported, actively developed
-- **Android** — Not currently supported
+- **macOS (Desktop)** — Primary platform. Fully supported.
+- **iOS (Mobile)** — Companion app for cross-device sync. React Native.
+- **Android** — Not currently supported.
+- **Windows/Linux** — Not currently supported.
 
 ## Known Issues
 
-- **Electron desktop wrapper respawn loop** — The Electron-packaged desktop app (.dmg) may launch multiple instances in a loop. Use the local development server (`npm run dev -- start`) as the primary desktop interface until this is resolved. This does not affect the mobile app.
+- **Electron wrapper respawn loop** — The packaged desktop app (.dmg) may launch multiple instances in a loop. Use the development server (`npm run dev -- start`) as the primary interface until this is resolved.
+
+## Status
+
+Active development. Private beta.
+
+## License
+
+Proprietary. All rights reserved.
 
 ---
 
-Part of the [Alpenglow](https://github.com/NOUSai-Labs/Alpenglow) platform.
+S3 | Freedom in Code
